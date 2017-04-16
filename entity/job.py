@@ -1,12 +1,18 @@
-class Job:
-    def __init__(self, name, parameter):
-        self.name = name
-        self.parameter = parameter
+class Job():
+    def __init__(self, positionId, positionName, city, createTime, salary, companyId, companyName, companyFullName):
+        self.positionId = positionId
+        self.positionName = positionName
+        self.city = city
+        self.createTime = createTime
+        self.salary = salary
+        self.companyId = companyId
+        self.companyName = companyName
+        self.companyFullName = companyFullName
 
-    @property
-    def name(self):
-        return self._name
+    def __str__(self):
+        return '{positionId = ' + self.positionId + '; positionName = ' + self.positionName + \
+               '; city = ' + self.city + '; createTime = ' + self.createTime + '; salary = ' + self.salary + '; companyId = ' + self.companyId \
+               + '; companyName = ' + self.companyName + '; companyFullName' + self.companyFullName + '}';
 
-    @name.setter
-    def name(self, value):
-        self._name = value
+    def __repr__(self):
+        return self.__str__()
