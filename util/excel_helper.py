@@ -5,7 +5,7 @@ from openpyxl import Workbook
 
 logging.basicConfig(filename='info.log', level=logging.DEBUG)
 
-EXCEL_DIR = 'D:/lagou/data/'
+EXCEL_DIR = '/home/lucasx/lagou/data/'
 
 
 def write_excel(joblist, filename):

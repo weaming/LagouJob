@@ -2,8 +2,8 @@ import jieba
 import jieba.analyse
 import os
 
-STOPWORDS_PATH = 'D:/Users/Administrator/PycharmProjects/LagouJob/config/stopwords.txt'
-USER_CORPUS = 'D:/Users/Administrator/PycharmProjects/LagouJob/config/usercorpus.txt'
+STOPWORDS_PATH = '/home/lucasx/PycharmProjects/LagouJob/config/stopwords.txt'
+USER_CORPUS = '/home/lucasx/PycharmProjects/LagouJob/config/usercorpus.txt'
 
 
 def concat_all_text(text_dir):
@@ -24,4 +24,4 @@ def get_hot_words(text):
 
 
 if __name__ == '__main__':
-    get_hot_words(concat_all_text('D:\lagou\detail'))
+    get_hot_words(concat_all_text('/home/lucasx/lagou/detail'))

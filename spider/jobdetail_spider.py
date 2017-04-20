@@ -7,7 +7,7 @@ import time
 
 from util.excel_helper import mkdirs_if_not_exists
 
-JOB_DETAIL_DIR = 'D:/lagou/detail/'
+JOB_DETAIL_DIR = '/home/lucasx/lagou/detail/'
 
 logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s\t", level=logging.DEBUG)
 
