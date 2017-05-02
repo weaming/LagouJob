@@ -4,10 +4,11 @@ import os
 import requests
 from bs4 import BeautifulSoup
 import time
+from config.config import TIME_SLEEP
 
 from util.excel_helper import mkdirs_if_not_exists
 
-JOB_DETAIL_DIR = '/home/lucasx/lagou/detail/'
+JOB_DETAIL_DIR = './data'
 
 logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s\t", level=logging.DEBUG)
 
@@ -30,7 +31,7 @@ def crawl_job_detail(positionId, positionName):
         text = soup.find_all('div', class_='content')[0].get_text()
 
         write_job_details(positionId, text, positionName)
-        time.sleep(2)
+        time.sleep(TIME_SLEEP)
     elif response.status_code == 403:
         logging.error('request is forbidden by the server...')
     else:
@@ -41,7 +42,12 @@ def write_job_details(positionId, text, parent_dir_name):
     """write the job details text into text file"""
     details_dir = JOB_DETAIL_DIR + parent_dir_name + os.path.sep
     mkdirs_if_not_exists(details_dir)
-    with open(details_dir + str(positionId) + '.txt', mode='w', encoding='UTF-8') as f:
+    try:
+        f = open(details_dir + str(positionId) + '.txt', mode='w', encoding='UTF-8')
+    except:
+        import io
+        f = io.open(details_dir + str(positionId) + '.txt', mode='w', encoding='UTF-8')
+    finally:
         f.write(text)
         f.flush()
         f.close()
