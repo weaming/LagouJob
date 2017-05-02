@@ -4,3 +4,5 @@ spider/__pycache__/
 spider/info.log
 util/__pycache__/
 spider/
+logs
+*.pyc
