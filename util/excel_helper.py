@@ -6,8 +6,14 @@ import os, sys
 
 from openpyxl import Workbook
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except Exception:
+    pass
+finally:
+    pass
+
 
 EXCEL_DIR = './data/'
 
