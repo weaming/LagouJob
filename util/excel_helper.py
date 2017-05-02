@@ -1,26 +1,30 @@
-import logging
-import os
+# -*- coding: utf-8 -*-
+# !/usr/bin/env python
+
+from util import log as logging
+import os, sys
 
 from openpyxl import Workbook
 
-logging.basicConfig(filename='info.log', level=logging.DEBUG)
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-EXCEL_DIR = '/home/lucasx/lagou/data/'
+EXCEL_DIR = './data/'
 
 
 def write_excel(joblist, filename):
     mkdirs_if_not_exists(EXCEL_DIR)
     wb = Workbook()
     ws = wb.active
-    ws.title = "职位信息"
-    ws.cell(row=1, column=1).value = '职位编码'
-    ws.cell(row=1, column=2).value = '职位名称'
-    ws.cell(row=1, column=3).value = '所在城市'
-    ws.cell(row=1, column=4).value = '发布日期'
-    ws.cell(row=1, column=5).value = '薪资待遇'
-    ws.cell(row=1, column=6).value = '公司编码'
-    ws.cell(row=1, column=7).value = '公司名称'
-    ws.cell(row=1, column=8).value = '公司全称'
+    ws.title = u"职位信息"
+    ws.cell(row=1, column=1).value = u'职位编码'
+    ws.cell(row=1, column=2).value = u'职位名称'
+    ws.cell(row=1, column=3).value = u'所在城市'
+    ws.cell(row=1, column=4).value = u'发布日期'
+    ws.cell(row=1, column=5).value = u'薪资待遇'
+    ws.cell(row=1, column=6).value = u'公司编码'
+    ws.cell(row=1, column=7).value = u'公司名称'
+    ws.cell(row=1, column=8).value = u'公司全称'
 
     rownum = 2
     for each_job in joblist:

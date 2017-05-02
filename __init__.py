@@ -1,3 +1,3 @@
 import sys
-
-sys.path.append('/home/lucasx/PycharmProjects/LagouJob')
+import os
+sys.path.append(os.path.dirname(__file__))

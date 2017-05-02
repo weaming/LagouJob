@@ -1,9 +1,10 @@
 import jieba
 import jieba.analyse
 import os
+from config.config import *
 
-STOPWORDS_PATH = '/home/lucasx/PycharmProjects/LagouJob/config/stopwords.txt'
-USER_CORPUS = '/home/lucasx/PycharmProjects/LagouJob/config/usercorpus.txt'
+STOPWORDS_PATH = BASE_PATH + '/config/stopwords.txt'
+USER_CORPUS = BASE_PATH + '/config/usercorpus.txt'
 
 
 def concat_all_text(text_dir):
