@@ -8,7 +8,7 @@ from config.config import TIME_SLEEP
 
 from util.excel_helper import mkdirs_if_not_exists
 
-JOB_DETAIL_DIR = './data'
+JOB_DETAIL_DIR = './data/'
 
 logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s\t", level=logging.DEBUG)
 
