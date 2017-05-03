@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python
 
+import os
 import sys
 import time
-import os
+
 import requests
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 from spider.jobdetail_spider import crawl_job_detail
 import pandas as pd
@@ -15,6 +17,7 @@ try:
     from urllib import parse as parse
 except:
     import urllib as parse
+
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
@@ -48,8 +51,8 @@ def crawl_jobs(positionName):
                 #           each_item['companyId'], each_item['companyName'], each_item['companyFullName'])
                 # joblist.append(job)
                 JOB_DATA.append([each_item['positionId'], each_item['positionName'], each_item['city'],
-                          each_item['createTime'], each_item['salary'],
-                          each_item['companyId'], each_item['companyName'], each_item['companyFullName']])
+                                 each_item['createTime'], each_item['salary'],
+                                 each_item['companyId'], each_item['companyName'], each_item['companyFullName']])
                 crawl_job_detail(each_item['positionId'], positionName)
             print('crawling page %d done...' % i)
             time.sleep(TIME_SLEEP)
@@ -111,14 +114,14 @@ if __name__ == '__main__':
     for _ in craw_job_list:
         joblist = crawl_jobs(_)
         col = [
-                u'职位编码',
-                u'职位名称',
-                u'所在城市',
-                u'发布日期',
-                u'薪资待遇',
-                u'公司编码',
-                u'公司名称',
-                u'公司全称']
+            u'职位编码',
+            u'职位名称',
+            u'所在城市',
+            u'发布日期',
+            u'薪资待遇',
+            u'公司编码',
+            u'公司名称',
+            u'公司全称']
         # jl = [json.dumps(_) for _ in joblist]
         df = pd.DataFrame(joblist, columns=col)
         path = "/data/"
