@@ -18,13 +18,12 @@ try:
 except:
     import urllib as parse
 
-    reload(sys)
+    sys.reload()
     sys.setdefaultencoding('utf-8')
 
 
 def crawl_jobs(positionName):
     """crawl the job info from lagou H5 web pages"""
-    # joblist = list()
     JOB_DATA = list()
     max_page_number = get_max_pageNo(positionName)
     log.info("%s, 共有 %s 页记录, 共约 %s 记录", positionName, max_page_number, max_page_number * 15)
@@ -109,8 +108,7 @@ def get_max_pageNo(positionName):
 
 
 if __name__ == '__main__':
-    # jobname = '人工智能'
-    craw_job_list = ["数据挖掘", "ios", "后端", "架构师", "前端", "Android", "大数据", "人工智能", "java", "php", "python"]
+    craw_job_list = ["自然语言处理", "数据挖掘"]
     for _ in craw_job_list:
         joblist = crawl_jobs(_)
         col = [
@@ -122,8 +120,6 @@ if __name__ == '__main__':
             u'公司编码',
             u'公司名称',
             u'公司全称']
-        # jl = [json.dumps(_) for _ in joblist]
         df = pd.DataFrame(joblist, columns=col)
-        path = "/data/"
-        df.to_csv(path + _ + ".csv")
-        # write_excel(joblist, jobname)
+        path = "./data/"
+        df.to_excel(path + _ + ".xlsx", sheet_name=_)

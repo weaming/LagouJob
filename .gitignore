@@ -5,3 +5,5 @@ spider/info.log
 util/__pycache__/
 logs
 *.pyc
+config/__pycache__/
+spider/data

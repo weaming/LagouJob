@@ -1,7 +1,10 @@
 # Data analysis of [Lagou](http://www.lagou.com/)
 ![LagouIcon](http://pstatic.lagou.com/www/static/common/widgets/header_c/modules/img/logo_d0915a9.png)
 
-## Main Function
+## Introduction
+This repository is designed for job data analysis of [Lagou](http://www.lagou.com/). 
+The main function it includes is listed here: 
+
 1. crawl job data from [Lagou](www.lagou.com), and get the latest info of jobs
 2. data analysis and visualize
 3. crawl job details info and generate word cloud as __Job Impression__
@@ -22,6 +25,7 @@
 > ![Image4](https://pic2.zhimg.com/0ce1858e3f261f0a90e50e79bd057e8d_b.png)
 > ![Image5](https://pic3.zhimg.com/3854e7ca5a8c53e5bb98a2ae3add4a8e_b.png)
 
-## More
+## Report
 For more information, please visit my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659).   
-In addition, there is [an another repository](https://github.com/EclipseXuLu/JiaYuan.git) which may help you!
+In addition, there is [an another repository](https://github.com/EclipseXuLu/JiaYuan.git) which may help you!   
+The PPT report can be found [here](拉勾网数据分析.ppsm).
