@@ -45,10 +45,6 @@ def crawl_jobs(positionName):
         response = requests.get(request_url, headers=headers, cookies=cookies)
         if response.status_code == 200:
             for each_item in response.json()['content']['data']['page']['result']:
-                # job = Job(each_item['positionId'], each_item['positionName'], each_item['city'],
-                #           each_item['createTime'], each_item['salary'],
-                #           each_item['companyId'], each_item['companyName'], each_item['companyFullName'])
-                # joblist.append(job)
                 JOB_DATA.append([each_item['positionId'], each_item['positionName'], each_item['city'],
                                  each_item['createTime'], each_item['salary'],
                                  each_item['companyId'], each_item['companyName'], each_item['companyFullName']])

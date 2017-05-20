@@ -29,3 +29,12 @@ The main function it includes is listed here:
 For more information, please visit my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659).   
 In addition, there is [an another repository](https://github.com/EclipseXuLu/JiaYuan.git) which may help you!   
 The PPT report can be found [here](拉勾网数据分析.ppsm).
+
+## One more thing
+Inspired by Google IO 2017. We've gotten the data, but how can we make deeper analysis instead of just
+doing simple statics. With the help of [Machine Learning](http://baike.baidu.com/link?url=_k8D5Ip3KB8tF-ljDntsbyBEHbmY48S3j4Z58s01MszOeiutS22lr83k_UJRcOSKy1H88FqPcj9WXKiuF5Hy7c1O8NF57EQw43u5Jk1gdaUWhlEgfaAvL-QR5KEi171a),
+we can make full use of these data. 
+
+Here are several insights I have thought yet.
+* To train a model with machine learning algorithm and judge which company deserves your entrance.
+* More features are being developing ~ 
