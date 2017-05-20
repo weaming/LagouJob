@@ -3,6 +3,8 @@ import jieba.analyse
 import os
 from config.config import *
 
+import pandas as pd
+
 STOPWORDS_PATH = BASE_PATH + '/config/stopwords.txt'
 USER_CORPUS = BASE_PATH + '/config/usercorpus.txt'
 
@@ -21,8 +23,10 @@ def concat_all_text(text_dir):
 def get_hot_words(text):
     jieba.analyse.set_stop_words(STOPWORDS_PATH)
     jieba.load_userdict(USER_CORPUS)
-    print(jieba.analyse.extract_tags(text, topK=30, withWeight=False, allowPOS=()))
+    df = pd.DataFrame(jieba.analyse.extract_tags(text, topK=30, withWeight=True, allowPOS=()))
+    print(df)
+    df.to_excel('./hotwords/DM.xlsx', 'DM')
 
 
 if __name__ == '__main__':
-    get_hot_words(concat_all_text('/home/lucasx/lagou/detail'))
+    get_hot_words(concat_all_text('/home/lucasx/PycharmProjects/LagouJob/spider/data/数据挖掘'))
