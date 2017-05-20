@@ -38,3 +38,4 @@ we can make full use of these data.
 Here are several insights I have thought yet.
 * To train a model with machine learning algorithm and judge which company deserves your entrance.
 * More features are being developing ~ 
+* If your are interested in __machine learning__ or __data mining__, welcome to join us! 
