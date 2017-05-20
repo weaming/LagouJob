@@ -5,12 +5,19 @@
 This repository is designed for job data analysis of [Lagou](http://www.lagou.com/). 
 The main function it includes is listed here: 
 
-1. crawl job data from [Lagou](www.lagou.com), and get the latest info of jobs
-2. data analysis and visualize
-3. crawl job details info and generate word cloud as __Job Impression__
+1. Crawl job data from [Lagou](www.lagou.com), and get the latest info of jobs
+2. Data analysis and visualize
+3. Crawl job details info and generate word cloud as __Job Impression__
+4. In order to train a [NLP](http://baike.baidu.com/item/nlp/25220#viewPageContent) task with machine learning, the data of interviewee's comments will be stored in [mongodb](https://docs.mongodb.com/) 
 
-## Install
-    pip install -r requirements.txt
+## Prerequisites
+1. Install 3rd party libraries
+
+       pip install -r requirements.txt
+2. Install [mongodb](https://docs.mongodb.com/) and start [mongodb](https://docs.mongodb.com/) service
+
+        sudo service mongod start
+
 
 ## Basic Usage
 1. clone this project from [github](https://github.com/EclipseXuLu/LagouJob.git)
