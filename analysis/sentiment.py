@@ -45,6 +45,6 @@ def read_lines(filepath):
 
 
 if __name__ == '__main__':
-    text = '本书为数据学习方法的导论，面向非数学专业的高年级本科生、硕士和博士研究生。本书还涵盖了大量的R实验，详细解释了在实际生活中如何践行不同的方法，因此对于实践派数据科学家来说是有用的资源。'
+    text = '面试效率很高，各环节之间并没有太多等待时间；各位面试官、HR都挺好。'
     sentiment = cal_sentiment(text)
     print(sentiment)

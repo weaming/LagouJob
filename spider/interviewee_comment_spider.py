@@ -7,6 +7,7 @@ import pandas as pd
 from spider.lagou_spider import get_cookies
 from util import log
 from config import config
+from analysis.sentiment import cal_sentiment
 
 client = MongoClient()
 
@@ -103,21 +104,37 @@ def get_max_page_no(company_id):
 
 
 def insert_item(item):
-    client = MongoClient()
     db = client.lagou.intervieweeComment
     result = db.insert_one(item)
 
 
-def query_document():
-    client = MongoClient()
+def query_document(query_dict):
     db = client.lagou.intervieweeComment
-    cursor = db.find()
+    cursor = db.find(query_dict)
+    document_list = list()
     for document in cursor:
-        print(document)
+        document_list.append(document)
+
+    return document_list
+
+
+def update_item():
+    db = client.lagou.intervieweeComment
+    query_dict = {}
+    for document in query_document(query_dict):
+        sentiment_value = cal_sentiment(document['content'])
+        db.update_many(
+            {"orderId": document['orderId']},
+            {"$set": {"sentiment": sentiment_value}}
+        )
+        print('insert sentiment value %f successfully~' % sentiment_value)
 
 
 if __name__ == '__main__':
+    update_item()
+    """
     df = pd.read_excel('./data/company.xlsx')
     for _ in df['公司编码']:
         crawl_interviewee_comments(_)
     log.info('All interviewee comments have been stored in mongodb...')
+    """
