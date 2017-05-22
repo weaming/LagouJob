@@ -16,7 +16,7 @@ The main function it includes is listed here:
        pip install -r requirements.txt
 2. Install [mongodb](https://docs.mongodb.com/) and start [mongodb](https://docs.mongodb.com/) service
 
-        sudo service mongod start
+       sudo service mongod start
 
 
 ## Basic Usage
