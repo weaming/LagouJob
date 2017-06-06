@@ -7,6 +7,11 @@ from sklearn.linear_model import LogisticRegression
 
 
 def normalise(csv_filepath):
+    """
+    load csv data and normalize it
+    :param csv_filepath:
+    :return:
+    """
     df = pd.read_csv(csv_filepath)[[
         'companyScore', 'describeScore', 'comprehensiveScore', 'interviewerScore', 'usefulCount', 'myScore',
         'replyCount', 'isAnonymous']][1:]
