@@ -31,6 +31,8 @@ The main function it includes is listed here:
 > ![Image3](https://pic1.zhimg.com/85b930c6aff823a3b8ee73973d20f274_b.jpg)
 > ![Image4](https://pic2.zhimg.com/0ce1858e3f261f0a90e50e79bd057e8d_b.png)
 > ![Image5](https://pic3.zhimg.com/3854e7ca5a8c53e5bb98a2ae3add4a8e_b.png)
+> ![Image6](https://pic3.zhimg.com/9c2e99674bcb59e0ff54ca0a3fbe4142_r.jpg)
+> ![Image7](https://pic3.zhimg.com/6ea06ad7dd376f51e629635a69b09cba_r.jpg)
 
 ## Report
 For more information, please visit my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659).   
@@ -44,5 +46,5 @@ we can make full use of these data.
 
 Here are several insights I have thought yet.
 * To train a model with machine learning algorithm and judge which company deserves your entrance.
-* More features are being developing ~ 
+* More features are being developed ~ 
 * If your are interested in __machine learning__ or __data mining__, welcome to join us! 
