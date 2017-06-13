@@ -7,6 +7,8 @@ import time
 
 import requests
 
+from util.file_reader import parse_job_xml
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 from spider.jobdetail_spider import crawl_job_detail
 import pandas as pd
@@ -88,7 +90,7 @@ def get_max_pageNo(positionName):
         'Connection': 'keep-alive'
     }
     response = requests.get(request_url, headers=headers, cookies=cookies, timeout=10)
-    print("获取 %s 信息路由:" % positionName + request_url)
+    print("Getting data from %s successfully~" % positionName + request_url)
     if response.status_code == 200:
         max_page_no = int(int(response.json()['content']['data']['page']['totalCount']) / 15 + 1)
 
@@ -104,7 +106,7 @@ def get_max_pageNo(positionName):
 
 
 if __name__ == '__main__':
-    craw_job_list = ["人工智能", "机器学习", "深度学习", "自然语言处理", "数据挖掘"]
+    craw_job_list = parse_job_xml('../config/job.xml')
     for _ in craw_job_list:
         joblist = crawl_jobs(_)
         col = [
