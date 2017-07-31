@@ -45,6 +45,6 @@ doing simple statistics. With the help of [Machine Learning](http://baike.baidu.
 we can make full use of these data. 
 
 Here are several insights I have thought yet.
-* To train a model with machine learning algorithm and judge which company deserves your entrance.
+* To train a model with machine learning algorithm and judge which company deserves your entrance. This [article](https://zhuanlan.zhihu.com/p/27069063) describe the basic job data mining with machine learning.
 * More features are being developed ~ 
 * If your are interested in __machine learning__ or __data mining__, welcome to join us! 
