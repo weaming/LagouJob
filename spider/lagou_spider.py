@@ -50,7 +50,10 @@ def crawl_jobs(positionName):
                 JOB_DATA.append([each_item['positionId'], each_item['positionName'], each_item['city'],
                                  each_item['createTime'], each_item['salary'],
                                  each_item['companyId'], each_item['companyName'], each_item['companyFullName']])
-                crawl_job_detail(each_item['positionId'], positionName)
+                # try:
+                    # crawl_job_detail(each_item['positionId'], positionName)
+                # except:
+                #     pass
             print('crawling page %d done...' % i)
             time.sleep(TIME_SLEEP)
         elif response.status_code == 403:
@@ -120,4 +123,4 @@ if __name__ == '__main__':
             u'公司全称']
         df = pd.DataFrame(joblist, columns=col)
         path = "./data/"
-        df.to_excel(path + _ + ".xlsx", sheet_name=_)
+        df.to_excel(path + _ + ".xlsx", sheet_name=_, index=False)

@@ -2,9 +2,11 @@ import time
 
 from util import log
 from config import config
+import os
 from spider import lagou_spider
 
 import requests
+from bs4 import BeautifulSoup
 import pandas as pd
 
 
@@ -55,9 +57,55 @@ def crawl_company(havemark=0):
     return COMPANY_LIST
 
 
+def crawl_company_stage(company_id):
+    req_url = 'https://m.lagou.com/gongsi/%s.html' % str(company_id)
+    headers = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        'Host': 'm.lagou.com',
+        'Referer': 'https://m.lagou.com',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+    }
+    response = requests.get(req_url, headers=headers, cookies=lagou_spider.get_cookies(), timeout=20)
+    print(response.url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, 'html5lib')
+        company_desc = soup.find_all(class_="desc")[0].get_text().strip()
+        industryField = company_desc.split('/')[0].strip()
+        financeStage = company_desc.split('/')[1].strip()
+        staffNum = company_desc.split('/')[2].strip()
+
+    elif response.status_code == 403:
+        log.error('403 forbidden...')
+    else:
+        log.error(response.status_code)
+    time.sleep(config.TIME_SLEEP)
+
+    return [company_id, industryField, financeStage, staffNum]
+
+
 if __name__ == '__main__':
-    company_list = crawl_company(0)
-    cols = [u'公司编码', u'公司名称', u'所在城市', u'企业文化', u'公司全称', u'融资阶段', u'所属行业', u'面试评价', u'在招职位', u'简历处理速率']
-    df = pd.DataFrame(company_list, columns=cols)
-    df.to_excel('./data/company.xlsx', 'Company')
+    company_level_list = list()
+    visited_company_id_list = list()
+    for job in os.listdir('./data'):
+        for company_id in pd.read_excel(os.path.join('./data', job))['公司编码']:
+            if not company_id in visited_company_id_list:
+                try:
+                    company = crawl_company_stage(company_id)
+                    company_level_list.append(company)
+                    visited_company_id_list.append(company_id)
+                except:
+                    pass
+                finally:
+                    cols = [u'公司编码', u'所属行业', u'融资阶段', u'员工数量']
+                    df = pd.DataFrame(company_level_list, columns=cols)
+                    df.to_excel('D:/company.xlsx', 'Company', index=False)
+            else:
+                log.info('%d has been visited before...' % company_id)
     log.info('Processing done!')
+
+    # company_list = crawl_company(0)
+    # cols = [u'公司编码', u'公司名称', u'所在城市', u'企业文化', u'公司全称', u'融资阶段', u'所属行业', u'面试评价', u'在招职位', u'简历处理速率']
+    # df = pd.DataFrame(company_list, columns=cols)
+    # df.to_excel('./data/company.xlsx', 'Company', index=False)
+    # log.info('Processing done!')
