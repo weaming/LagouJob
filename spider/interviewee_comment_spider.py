@@ -4,7 +4,7 @@ import requests
 from pymongo import MongoClient
 import pandas as pd
 
-from spider.lagou_spider import get_cookies
+from spider.m_lagou_spider import get_cookies
 from util import log
 from config import config
 from analysis.sentiment import cal_sentiment

@@ -3,7 +3,7 @@ import time
 from util import log
 from config import config
 import os
-from spider import lagou_spider
+from spider import m_lagou_spider
 
 import requests
 from bs4 import BeautifulSoup
@@ -37,7 +37,7 @@ def crawl_company(havemark=0):
             'havemark': str(havemark)
         }
 
-        response = requests.post(req_url, headers=headers, params=params, cookies=lagou_spider.get_cookies(),
+        response = requests.post(req_url, headers=headers, params=params, cookies=m_lagou_spider.get_cookies(),
                                  timeout=10)
         print(response.url)
         if response.status_code == 200:
@@ -66,7 +66,7 @@ def crawl_company_stage(company_id):
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
     }
-    response = requests.get(req_url, headers=headers, cookies=lagou_spider.get_cookies(), timeout=20)
+    response = requests.get(req_url, headers=headers, cookies=m_lagou_spider.get_cookies(), timeout=20)
     print(response.url)
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html5lib')

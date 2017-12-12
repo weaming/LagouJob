@@ -1,3 +1,6 @@
+"""
+a web spider for mobile lagou
+"""
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python
 

@@ -13,7 +13,7 @@ The main function it includes is listed here:
 ## Prerequisites
 1. Install 3rd party libraries
 
-       pip install -r requirements.txt
+       sudo pip3 install -r requirements.txt
 2. Install [mongodb](https://docs.mongodb.com/) and start [mongodb](https://docs.mongodb.com/) service
 
        sudo service mongod start
@@ -22,7 +22,7 @@ The main function it includes is listed here:
 ## Basic Usage
 1. clone this project from [github](https://github.com/EclipseXuLu/LagouJob.git)
 2. change the file path in source code  
-3. run [lagou_spider.py](spider/lagou_spider.py) to get job data and output them with a Excel file
+3. run [lagou_spider.py](spider/m_lagou_spider.py) to get job data and output them with a Excel file
 4. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return TOP30 hot words
 
 ## Analysis Results
