@@ -37,7 +37,7 @@ def crawl_job_detail(positionId, positionName):
         jobnature = items.find('span', class_='item jobnature').span.text.strip()
         workyear = items.find('span', class_='item workyear').span.text.strip()
         education = items.find('span', class_='item education').span.text.strip()
-        jd = soup.find_all('div', class_='content')[0].get_text().strip().replace(' ', '')  # jd
+        jd = soup.find_all('div', class_='content')[0].get_text().strip().replace('\n', '').replace('&nbps;', '')  # jd
 
         # write_job_details_to_txt(positionId, jd, positionName)
         time.sleep(TIME_SLEEP)
@@ -81,11 +81,11 @@ if __name__ == '__main__':
                 pass
         col = [
             u'职位编码',
-            u'职位名称',
+            u'职位类型',
             u'工作性质',
             u'工作经验',
             u'教育程度',
             u'详情描述']
         df = pd.DataFrame(jd_item_list, columns=col)
         path = "./data/"
-        df.to_excel(path + positionName + "-JD.xlsx", sheet_name=positionName, index=False)
+        df.to_excel(path + positionName + "-JD.xlsx", sheet_name=positionName, index=False, encoding='UTF-8')
