@@ -1,13 +1,15 @@
-# Data analysis of [Lagou](http://www.lagou.com/)
+# Data Analysis of [Lagou](http://www.lagou.com/)
 ![LagouIcon](http://pstatic.lagou.com/www/static/common/widgets/header_c/modules/img/logo_d0915a9.png)
+
+__Report__: [[PPT](拉勾网数据分析.ppsm)]
 
 ## Introduction
 This repository is designed for job data analysis of [Lagou](http://www.lagou.com/). 
-The main function it includes is listed here: 
+The main functions included are listed here: 
 
-1. Crawl job data from [Lagou](www.lagou.com), and get the latest info of jobs
-2. Data analysis and visualize
-3. Crawl job details info and generate word cloud as __Job Impression__
+1. Crawling job data from [Lagou](www.lagou.com), and get the latest information of jobs about Internet.
+2. Data analysis and visualization.
+3. Crawling job details info and generate word cloud as __Job Impression__.
 4. In order to train a [NLP](http://baike.baidu.com/item/nlp/25220#viewPageContent) task with machine learning, the data of interviewee's comments will be stored in [mongodb](https://docs.mongodb.com/) 
 
 ## Prerequisites
@@ -20,10 +22,10 @@ The main function it includes is listed here:
 
 
 ## Basic Usage
-1. clone this project from [github](https://github.com/EclipseXuLu/LagouJob.git)
-2. change the file path in source code  
-3. run [lagou_spider.py](spider/m_lagou_spider.py) to get job data and output them with a Excel file
-4. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return TOP30 hot words
+1. clone this project from [github](https://github.com/lucasxlu/LagouJob.git).
+2. change the file path in source code.  
+3. run [lagou_spider.py](spider/m_lagou_spider.py) to get job data and output them with a Excel file.
+4. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return __TOP-30__ hot words.
 
 ## Analysis Results
 > ![Image1](https://pic2.zhimg.com/a0c42bc6bd7c8743687ba50305c85821_b.jpg)
@@ -35,9 +37,7 @@ The main function it includes is listed here:
 > ![Image7](https://pic3.zhimg.com/6ea06ad7dd376f51e629635a69b09cba_b.jpg)
 
 ## Report
-For more information, please visit my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659).   
-In addition, there is [an another repository](https://github.com/EclipseXuLu/JiaYuan.git) which may help you!   
-The PPT report can be found [here](拉勾网数据分析.ppsm).
+For more information, please visit my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659). 
 
 ## One more thing
 Inspired by Google IO 2017. We've gotten the data, but how can we make deeper analysis instead of just
