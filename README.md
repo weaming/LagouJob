@@ -1,10 +1,10 @@
-# Data Analysis of [Lagou](http://www.lagou.com/)
+# Data Analysis of [Lagou Job](http://www.lagou.com/)
 ![LagouIcon](http://pstatic.lagou.com/www/static/common/widgets/header_c/modules/img/logo_d0915a9.png)
 
 __Report__: [[PPT](拉勾网数据分析.ppsm)]
 
 ## Introduction
-This repository is designed for job data analysis of [Lagou](http://www.lagou.com/). 
+This repository holds the code for job data analysis of [Lagou](http://www.lagou.com/). 
 The main functions included are listed here: 
 
 1. Crawling job data from [Lagou](www.lagou.com), and get the latest information of jobs about Internet.
@@ -37,14 +37,5 @@ The main functions included are listed here:
 > ![Image7](https://pic3.zhimg.com/6ea06ad7dd376f51e629635a69b09cba_b.jpg)
 
 ## Report
-For more information, please visit my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659). 
-
-## One more thing
-Inspired by Google IO 2017. We've gotten the data, but how can we make deeper analysis instead of just
-doing simple statistics. With the help of [Machine Learning](http://baike.baidu.com/link?url=_k8D5Ip3KB8tF-ljDntsbyBEHbmY48S3j4Z58s01MszOeiutS22lr83k_UJRcOSKy1H88FqPcj9WXKiuF5Hy7c1O8NF57EQw43u5Jk1gdaUWhlEgfaAvL-QR5KEi171a),
-we can make full use of these data. 
-
-Here are several insights I have thought yet.
-* To train a model with machine learning algorithm and judge which company deserves your entrance. This [article](https://zhuanlan.zhihu.com/p/27069063) describe the basic job data mining with machine learning.
-* More features are being developed ~ 
-* If your are interested in __machine learning__ or __data mining__, welcome to join us! 
+* For technical details, please refer to my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659). 
+* The PPT report can be downloaded from [here](拉勾网数据分析.ppsm).
