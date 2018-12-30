@@ -1,9 +1,8 @@
 import jieba
 import jieba.analyse
-import os
-from config.config import *
-
 import pandas as pd
+
+from config.config import *
 
 STOPWORDS_PATH = BASE_PATH + '/config/stopwords.txt'
 USER_CORPUS = BASE_PATH + '/config/usercorpus.txt'

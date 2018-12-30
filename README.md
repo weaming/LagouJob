@@ -1,11 +1,9 @@
 # Data Analysis of [Lagou Job](http://www.lagou.com/)
 ![LagouIcon](http://pstatic.lagou.com/www/static/common/widgets/header_c/modules/img/logo_d0915a9.png)
 
-__Report__: [[PPT](拉勾网数据分析.ppsm)]
-
 ## Introduction
 This repository holds the code for job data analysis of [Lagou](http://www.lagou.com/). 
-The main functions included are listed here: 
+The main functions included are as follows: 
 
 1. Crawling job data from [Lagou](www.lagou.com), and get the latest information of jobs about Internet.
 2. Data analysis and visualization.
@@ -21,11 +19,10 @@ The main functions included are listed here:
        sudo service mongod start
 
 
-## Basic Usage
+## How to Use
 1. clone this project from [github](https://github.com/lucasxlu/LagouJob.git).
-2. change the file path in source code.  
-3. run [lagou_spider.py](spider/m_lagou_spider.py) to get job data and output them with a Excel file.
-4. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return __TOP-30__ hot words.
+2. run [m_lagou_spider.py](spider/m_lagou_spider.py) to crawl job data, it will output an Excel file.
+3. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return __TOP-30__ hot words.
 
 ## Analysis Results
 > ![Image1](https://pic2.zhimg.com/a0c42bc6bd7c8743687ba50305c85821_b.jpg)
@@ -38,4 +35,7 @@ The main functions included are listed here:
 
 ## Report
 * For technical details, please refer to my answer at [Zhihu](https://www.zhihu.com/question/36132174/answer/94392659). 
-* The PPT report can be downloaded from [here](拉勾网数据分析.ppsm).
+* The PDF report can be downloaded from [here](https://lucasxlu.github.io/blog/projects/LagouJob.pdf).
+
+## LICENSE
+[Apache-2.0](./LICENSE)

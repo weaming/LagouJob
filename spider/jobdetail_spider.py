@@ -3,12 +3,12 @@ a web spider for mobile lagou JD
 """
 import logging
 import os
+import random
 
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
-from config.config import TIME_SLEEP
 
 from util.excel_helper import mkdirs_if_not_exists
 
@@ -18,7 +18,9 @@ logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s\t", l
 
 
 def crawl_job_detail(positionId, positionName):
-    """get the detailed description of the job"""
+    """
+    get the detailed job description of the position
+    """
     request_url = 'https://m.lagou.com/jobs/' + str(positionId) + '.html'
     headers = {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -40,7 +42,7 @@ def crawl_job_detail(positionId, positionName):
         jd = soup.find_all('div', class_='content')[0].get_text().strip().replace('\n', '').replace('&nbps;', '')  # jd
 
         # write_job_details_to_txt(positionId, jd, positionName)
-        time.sleep(TIME_SLEEP)
+        time.sleep(random.randint(3, 6))
     elif response.status_code == 403:
         logging.error('request is forbidden by the server...')
     else:
@@ -50,7 +52,9 @@ def crawl_job_detail(positionId, positionName):
 
 
 def write_job_details_to_txt(positionId, text, parent_dir_name):
-    """write the job details text into text file"""
+    """
+    write the job details text into text file
+    """
     details_dir = JOB_DETAIL_DIR + parent_dir_name + os.path.sep
     mkdirs_if_not_exists(details_dir)
     try:

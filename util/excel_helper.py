@@ -14,11 +14,16 @@ except Exception:
 finally:
     pass
 
-
 EXCEL_DIR = './data/'
 
 
 def write_excel(joblist, filename):
+    """
+    write Excel with Workbook
+    :param joblist:
+    :param filename:
+    :return:
+    """
     mkdirs_if_not_exists(EXCEL_DIR)
     wb = Workbook()
     ws = wb.active
@@ -57,6 +62,8 @@ def get_mean(numstring):
 
 
 def mkdirs_if_not_exists(directory_):
-    """create a new folder if it does not exist"""
+    """
+    create a new folder if it does not exist
+    """
     if not os.path.exists(directory_) or not os.path.isdir(directory_):
         os.makedirs(directory_)

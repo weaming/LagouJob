@@ -1,13 +1,14 @@
+import random
+import sys
 import time
 
 import requests
 from pymongo import MongoClient
-import pandas as pd
 
-from spider.m_lagou_spider import get_cookies
-from util import log
-from config import config
+sys.path.append('../')
 from analysis.sentiment import cal_sentiment
+from spider.m_lagou_spider import init_cookies
+from util import log
 
 client = MongoClient()
 
@@ -18,7 +19,6 @@ def crawl_interviewee_comments(company_id):
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate, br',
         'Host': 'www.lagou.com',
-        'Referer': 'https://www.lagou.com',
         'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0'
                       ' Mobile/13B143 Safari/601.1',
         'Referer': 'https://www.lagou.com/gongsi/interviewExperiences.html?companyId=%s' % company_id
@@ -34,7 +34,7 @@ def crawl_interviewee_comments(company_id):
                 'pageNo': str(pn + 1)
             }
 
-            response = requests.post(request_url, headers=headers, params=params, cookies=get_cookies())
+            response = requests.post(request_url, headers=headers, params=params, cookies=init_cookies())
             log.info('Crawl page %s successfully~' % response.url)
             if response.status_code == 200:
                 comment_list = response.json()['content']['data']['page']['result']
@@ -66,7 +66,7 @@ def crawl_interviewee_comments(company_id):
             else:
                 log.error('Error code is ' + str(response.status_code))
 
-            time.sleep(config.TIME_SLEEP)
+            time.sleep(random.randint(3, 6))
 
 
 def get_max_page_no(company_id):
@@ -80,7 +80,6 @@ def get_max_page_no(company_id):
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate, br',
         'Host': 'www.lagou.com',
-        'Referer': 'https://www.lagou.com',
         'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0'
                       ' Mobile/13B143 Safari/601.1',
         'Referer': 'https://www.lagou.com/gongsi/interviewExperiences.html?companyId=%s' % company_id
@@ -93,7 +92,7 @@ def get_max_page_no(company_id):
         'pageNo': '1'
     }
 
-    response = requests.post(request_url, headers=headers, params=params, cookies=get_cookies())
+    response = requests.post(request_url, headers=headers, params=params, cookies=init_cookies())
     if response.status_code == 200:
         maxpage = int(response.json()['content']['data']['page']['totalCount'])
     else:
