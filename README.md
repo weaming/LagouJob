@@ -1,9 +1,9 @@
 # Data Analysis of [Lagou Job](http://www.lagou.com/)
-![LagouIcon](http://pstatic.lagou.com/www/static/common/widgets/header_c/modules/img/logo_d0915a9.png)
+![Lagou](http://pstatic.lagou.com/www/static/common/widgets/header_c/modules/img/logo_d0915a9.png)
 
 ## Introduction
 This repository holds the code for job data analysis of [Lagou](http://www.lagou.com/). 
-The main functions included are as follows: 
+The main functions included are listed as follows: 
 
 1. Crawling job data from [Lagou](www.lagou.com), and get the latest information of jobs about Internet.
 2. Data analysis and visualization.
@@ -11,17 +11,17 @@ The main functions included are as follows:
 4. In order to train a [NLP](http://baike.baidu.com/item/nlp/25220#viewPageContent) task with machine learning, the data of interviewee's comments will be stored in [mongodb](https://docs.mongodb.com/) 
 
 ## Prerequisites
-1. Install 3rd party libraries
+1. Install 3rd party libraries  
 
-       sudo pip3 install -r requirements.txt
-2. Install [mongodb](https://docs.mongodb.com/) and start [mongodb](https://docs.mongodb.com/) service
+    ```sudo pip3 install -r requirements.txt```
+2. [optional] Install [mongodb](https://docs.mongodb.com/) and start [mongodb](https://docs.mongodb.com/) service
 
-       sudo service mongod start
+    ```sudo service mongod start```
 
 
 ## How to Use
 1. clone this project from [github](https://github.com/lucasxlu/LagouJob.git).
-2. run [m_lagou_spider.py](spider/m_lagou_spider.py) to crawl job data, it will output an Excel file.
+2. run [m_lagou_spider.py](spider/m_lagou_spider.py) to crawl job data, it will generate a collection of Excel files in ```./data``` directory.
 3. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return __TOP-30__ hot words.
 
 ## Analysis Results

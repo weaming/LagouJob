@@ -53,7 +53,7 @@ def crawl_company(havemark=0):
             log.error('403 forbidden...')
         else:
             log.error(response.status_code)
-        time.sleep(config.TIME_SLEEP)
+        time.sleep(random.randint(3, 6))
 
     return COMPANY_LIST
 
@@ -100,13 +100,7 @@ if __name__ == '__main__':
                 finally:
                     cols = [u'公司编码', u'所属行业', u'融资阶段', u'员工数量']
                     df = pd.DataFrame(company_level_list, columns=cols)
-                    df.to_excel('D:/company.xlsx', 'Company', index=False)
+                    df.to_excel('./company.xlsx', 'Company', index=False)
             else:
                 log.info('%d has been visited before...' % company_id)
     log.info('Processing done!')
-
-    # company_list = crawl_company(0)
-    # cols = [u'公司编码', u'公司名称', u'所在城市', u'企业文化', u'公司全称', u'融资阶段', u'所属行业', u'面试评价', u'在招职位', u'简历处理速率']
-    # df = pd.DataFrame(company_list, columns=cols)
-    # df.to_excel('./data/company.xlsx', 'Company', index=False)
-    # log.info('Processing done!')

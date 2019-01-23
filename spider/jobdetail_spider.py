@@ -91,5 +91,6 @@ if __name__ == '__main__':
             u'教育程度',
             u'详情描述']
         df = pd.DataFrame(jd_item_list, columns=col)
-        path = "./data/"
-        df.to_excel(path + positionName + "-JD.xlsx", sheet_name=positionName, index=False, encoding='UTF-8')
+        path = "./jd/"
+        mkdirs_if_not_exists(path)
+        df.to_excel(path + positionName + ".xlsx", sheet_name=positionName, index=False, encoding='UTF-8')

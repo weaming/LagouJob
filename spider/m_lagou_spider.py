@@ -57,13 +57,9 @@ def crawl_jobs(positionName):
              max_page_number * 15)
 
     # init cookies
-    # cookie = init_cookies()
-    cookie = dict(
-        cookies_are='_ga=GA1.2.1909834790.1521626484; user_trace_token=20180321180124-d04fa9b6-2cee-11e8-b566-5254005c3644;'
-                    ' LGUID=20180321180124-d04fac38-2cee-11e8-b566-5254005c3644;'
-                    ' sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22167a079973126c-0ddcc3c8549d8a-47e1039-2073600-167a079973216%22%2C%22%24device_id%22%3A%22167a079973126c-0ddcc3c8549d8a-47e1039-2073600-167a079973216%22%7D;'
-                    ' index_location_city=%E5%8C%97%E4%BA%AC; _gid=GA1.2.1984088672.1545987899; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1544442439,1544528705,1544585577,1545987900; JSESSIONID=ABAAABAAAFDABFG852ED5A0B4F011A0A5BAD4B2AC7CEAFE;'
-                    ' _ga=GA1.3.1909834790.1521626484; LGSID=20181230111858-a5dd1303-0be1-11e9-ae7e-5254005c3644; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1546141253; LGRID=20181230114052-b4f227f9-0be4-11e9-ae7e-5254005c3644')
+    cookie = init_cookies()
+    # cookie = dict(
+    #     cookies_are='')
 
     for i in range(1, max_page_number + 1):
         request_url = 'https://m.lagou.com/search.json?city=%E5%85%A8%E5%9B%BD&positionName=' + parse.quote(

@@ -1,7 +1,11 @@
-pandas==0.19.1
-openpyxl==2.4.1
-pymongo==3.4.0
-requests==2.20.0
-snownlp==0.12.3
 jieba==0.38
-beautifulsoup4==4.6.0
+pandas==0.19.1
+pymongo==3.5.1
+openpyxl==2.4.1
+snownlp==0.12.3
+matplotlib==2.1.1
+lxml==3.8.0
+numpy==1.13.3
+requests==2.18.4
+beautifulsoup4==4.7.1
+wordcloud==1.5.0
