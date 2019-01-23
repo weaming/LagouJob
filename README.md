@@ -22,7 +22,7 @@ The main functions included are listed as follows:
 ## How to Use
 1. clone this project from [github](https://github.com/lucasxlu/LagouJob.git).
 2. run [m_lagou_spider.py](spider/m_lagou_spider.py) to crawl job data, it will generate a collection of Excel files in ```./data``` directory.
-3. run [hot_words.py](analysis/hot_words.py) to cut sentences, and return __TOP-30__ hot words.
+3. run [hot_words_generator.py](analysis/hot_words_generator.py) to cut sentences, it will return __TOP-30__ hot words and wordcloud figure.
 
 ## Analysis Results
 > ![Image1](https://pic2.zhimg.com/a0c42bc6bd7c8743687ba50305c85821_b.jpg)
