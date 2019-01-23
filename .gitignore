@@ -7,3 +7,5 @@ logs
 *.pyc
 config/__pycache__/
 spider/data
+spider/company.xlsx
+spider/jd/

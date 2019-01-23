@@ -4,6 +4,7 @@ import time
 
 import requests
 from pymongo import MongoClient
+import pandas as pd
 
 sys.path.append('../')
 from analysis.sentiment import cal_sentiment
@@ -130,10 +131,7 @@ def update_item():
 
 
 if __name__ == '__main__':
-    update_item()
-    """
     df = pd.read_excel('./data/company.xlsx')
     for _ in df['公司编码']:
         crawl_interviewee_comments(_)
     log.info('All interviewee comments have been stored in mongodb...')
-    """

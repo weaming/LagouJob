@@ -3,6 +3,7 @@ import sys
 import jieba
 import jieba.analyse
 import numpy as np
+import pandas as pd
 from wordcloud import WordCloud
 
 from config.config import *
@@ -63,7 +64,43 @@ class HotWordsGenerator:
                 plt.axis("off")
                 plt.show()
 
+    def cal_and_show_jd_hot_words(self, jd_dir='../spider/jd'):
+        """
+        calculate and show hot words of Job Description (JD)
+        :param jd_dir:
+        :return:
+        """
+        if not os.path.exists(jd_dir) or len(os.listdir(jd_dir)) == 0:
+            print('Error! No valid content in {0}'.format(jd_dir))
+            sys.exit(0)
+        else:
+            jd_and_dir = {_.split('.')[0]: os.path.join(jd_dir, _) for _ in os.listdir(jd_dir)}
+
+            for k, v in jd_and_dir.items():
+                text = "".join(pd.read_excel(v)['详情描述'])
+                jieba.analyse.set_stop_words(STOPWORDS_PATH)
+                jieba.load_userdict(USER_CORPUS)
+                hot_words_with_weights = jieba.analyse.extract_tags(text, topK=30, withWeight=True, allowPOS=())
+
+                frequencies = {_[0]: _[1] for _ in hot_words_with_weights}
+
+                print(frequencies)
+
+                x, y = np.ogrid[:300, :300]
+                mask = (x - 150) ** 2 + (y - 150) ** 2 > 130 ** 2
+                mask = 255 * mask.astype(int)
+
+                wordcloud = WordCloud(font_path='./msyh.ttf', width=600, height=300, background_color="white",
+                                      repeat=False,
+                                      mask=mask)
+                wordcloud.generate_from_frequencies(frequencies)
+
+                import matplotlib.pyplot as plt
+                plt.imshow(wordcloud, interpolation='bilinear')
+                plt.axis("off")
+                plt.show()
+
 
 if __name__ == '__main__':
     hot_words_generator = HotWordsGenerator()
-    hot_words_generator.cal_and_show_job_impression_hot_words()
+    hot_words_generator.cal_and_show_jd_hot_words()
