@@ -79,7 +79,7 @@ def crawl_jobs(positionName):
     #     cookies_are='')
 
     df = pd.read_excel('./Proxy.xlsx')
-    # df = df[df['Delay'] < 1]
+    df = df[df['Delay'] < 1]
     print(df)
     ips = df['IP']
     https = df['HTTP']
