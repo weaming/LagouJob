@@ -1,18 +1,11 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python
 
-from util import log as logging
-import os, sys
+import os
 
 from openpyxl import Workbook
 
-try:
-    reload(sys)
-    sys.setdefaultencoding('utf-8')
-except Exception:
-    pass
-finally:
-    pass
+from util import log as logging
 
 EXCEL_DIR = './data/'
 

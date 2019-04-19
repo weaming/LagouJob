@@ -12,6 +12,7 @@ import time
 import pandas as pd
 
 import requests
+from requests import Session
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 from util.excel_helper import mkdirs_if_not_exists
@@ -47,6 +48,20 @@ def init_cookies():
     return response.cookies
 
 
+def visit_logo_static(logo_static_url):
+    headers = {
+        'DNT': '1',
+        'Referer': 'https://m.lagou.com/search.html',
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
+    }
+
+    response = requests.get(logo_static_url, headers=headers, timeout=20, cookies=init_cookies())
+    if response.status_code == 200:
+        print('visit logo static URL successfully.')
+    else:
+        print('Error occurs during visiting logo static URL. The ERROR_CODE is {0}.'.format(response.status_code))
+
+
 def crawl_jobs(positionName):
     """
     crawl the job info from lagou H5 web pages
@@ -56,27 +71,44 @@ def crawl_jobs(positionName):
     log.info("%s, There are %s pages, approximately %s records in total.", positionName, max_page_number,
              max_page_number * 15)
 
+    session = Session()
+
     # init cookies
     cookie = init_cookies()
     # cookie = dict(
     #     cookies_are='')
+
+    df = pd.read_excel('./Proxy.xlsx')
+    # df = df[df['Delay'] < 1]
+    print(df)
+    ips = df['IP']
+    https = df['HTTP']
+    ports = df['Port']
 
     for i in range(1, max_page_number + 1):
         request_url = 'https://m.lagou.com/search.json?city=%E5%85%A8%E5%9B%BD&positionName=' + parse.quote(
             positionName) + '&pageNo=' + str(i) + '&pageSize=15'
         headers = {
             'Accept': 'application/json',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-            'Host': 'm.lagou.com',
             'DNT': '1',
             'Referer': 'https://m.lagou.com/search.html',
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Connection': 'keep-alive',
-            'Referrer Policy': 'no-referrer-when-downgrade',
         }
-        response = requests.get(request_url, headers=headers, cookies=cookie)
+
+        if not os.path.exists('./Proxy.xlsx'):
+            print('Proxy.xlsx not exists. Please run proxy_crawler.py to collect IP proxy first!')
+            sys.exit(0)
+
+        idx = random.randint(0, len(ips))
+        proxies = {
+            https[idx].lower(): 'http://{0}:{1}'.format(ips[idx], ports[idx]) if https[idx].lower() == 'http'
+            else 'https://{0}:{1}'.format(ips[idx], ports[idx])
+        }
+
+        print('========using Proxy: {0}========'.format(proxies))
+
+        # response = session.get(url=request_url, headers=headers, cookies=cookie, proxies=proxies)
+        response = requests.get(request_url, headers=headers, cookies=cookie, proxies=proxies)
 
         # update cookies after first visit
         # cookie = response.cookies
@@ -101,11 +133,12 @@ def crawl_jobs(positionName):
                                          each_item['companyName'], each_item['companyFullName']])
                         print(each_item)
                     print('crawling page %d done...' % i)
-                    time.sleep(random.randint(3, 6))
+                    time.sleep(random.randint(5, 10))
                 else:
                     break
-            except Exception as exp:
-                print('Invalid request is found by Lagou...')
+            except Exception:
+                print('Error occurs during visiting Lagou. The ERROR_CODE is {0}. Return: {1}'.format(
+                    response.status_code, response.text))
                 pass
         elif response.status_code == 403:
             log.error('request is forbidden by the server...')
