@@ -13,9 +13,9 @@ import pandas as pd
 
 def crawl_company(havemark=0):
     """
-    crawl company's info 
-    :param havemark: 0 for not showing interviewees' remark; 1 for showing interviewees' remark; the default value is 0 
-    :return: 
+    crawl company's info
+    :param havemark: 0 for not showing interviewees' remark; 1 for showing interviewees' remark; the default value is 0
+    :return:
     """
     COMPANY_LIST = list()
 
@@ -53,7 +53,7 @@ def crawl_company(havemark=0):
             log.error('403 forbidden...')
         else:
             log.error(response.status_code)
-        time.sleep(random.randint(3, 6))
+        time.sleep(random.randint(6, 10))
 
     return COMPANY_LIST
 

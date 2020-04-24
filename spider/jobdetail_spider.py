@@ -14,7 +14,9 @@ from util.excel_helper import mkdirs_if_not_exists
 
 JOB_DETAIL_DIR = './jd/'
 
-logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s\t", level=logging.DEBUG)
+logging.basicConfig(
+    format="%(asctime)s-%(name)s-%(levelname)s-%(message)s\t", level=logging.DEBUG
+)
 
 
 def crawl_job_detail(positionId, positionName):
@@ -28,7 +30,7 @@ def crawl_job_detail(positionId, positionName):
         'Accept-Language': 'zh-CN,zh;q=0.8',
         'Host': 'm.lagou.com',
         'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4'
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4',
     }
 
     response = requests.get(request_url, headers=headers, timeout=10)
@@ -39,10 +41,16 @@ def crawl_job_detail(positionId, positionName):
         jobnature = items.find('span', class_='item jobnature').span.text.strip()
         workyear = items.find('span', class_='item workyear').span.text.strip()
         education = items.find('span', class_='item education').span.text.strip()
-        jd = soup.find_all('div', class_='content')[0].get_text().strip().replace('\n', '').replace('&nbps;', '')  # jd
+        jd = (
+            soup.find_all('div', class_='content')[0]
+            .get_text()
+            .strip()
+            .replace('\n', '')
+            .replace('&nbps;', '')
+        )  # jd
 
         # write_job_details_to_txt(positionId, jd, positionName)
-        time.sleep(random.randint(3, 6))
+        time.sleep(random.randint(6, 10))
     elif response.status_code == 403:
         logging.error('request is forbidden by the server...')
     else:
@@ -61,6 +69,7 @@ def write_job_details_to_txt(positionId, text, parent_dir_name):
         f = open(details_dir + str(positionId) + '.txt', mode='w', encoding='UTF-8')
     except:
         import io
+
         f = io.open(details_dir + str(positionId) + '.txt', mode='w', encoding='UTF-8')
     finally:
         f.write(text)
@@ -84,16 +93,14 @@ if __name__ == '__main__':
                 print(jd_item)
                 jd_item_list.append(jd_item)
 
-                col = [
-                    u'职位编码',
-                    u'职位类型',
-                    u'工作性质',
-                    u'工作经验',
-                    u'教育程度',
-                    u'详情描述']
+                col = [u'职位编码', u'职位类型', u'工作性质', u'工作经验', u'教育程度', u'详情描述']
                 df = pd.DataFrame(jd_item_list, columns=col)
                 mkdirs_if_not_exists(JOB_DETAIL_DIR)
-                df.to_excel(os.path.join(JOB_DETAIL_DIR, positionName + ".xlsx"), sheet_name=positionName, index=False,
-                            encoding='UTF-8')
+                df.to_excel(
+                    os.path.join(JOB_DETAIL_DIR, positionName + ".xlsx"),
+                    sheet_name=positionName,
+                    index=False,
+                    encoding='UTF-8',
+                )
             except:
                 pass
